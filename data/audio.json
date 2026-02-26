@@ -1,0 +1,80 @@
+[
+  {
+    "id": "talbiyah-recitation",
+    "title": "The Talbiyah",
+    "arabicTitle": "التلبية",
+    "description": "The sacred chant of pilgrims — a powerful declaration of devotion and response to Allah's call.",
+    "category": "supplication",
+    "duration": 120,
+    "durationFormatted": "2:00",
+    "text": "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ",
+    "translation": "Here I am, O Allah, here I am. Here I am, You have no partner, here I am. Verily all praise and blessings are Yours, and all sovereignty. You have no partner.",
+    "context": "Recite continuously while in Ihram until beginning Tawaf",
+    "imageColor": "#B8962E"
+  },
+  {
+    "id": "dua-tawaf",
+    "title": "Dua During Tawaf",
+    "arabicTitle": "دعاء الطواف",
+    "description": "Supplications to recite while circumambulating the Kaaba during Tawaf.",
+    "category": "ritual",
+    "duration": 180,
+    "durationFormatted": "3:00",
+    "text": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+    "translation": "Our Lord, give us good in this world and good in the hereafter, and protect us from the punishment of the Fire.",
+    "context": "Recite between the Yemeni corner and the Black Stone during each circuit",
+    "imageColor": "#2E7D32"
+  },
+  {
+    "id": "history-kaaba",
+    "title": "The History of the Kaaba",
+    "arabicTitle": "تاريخ الكعبة",
+    "description": "A guided audio journey through the sacred history of the Kaaba, from Prophet Ibrahim to the present day.",
+    "category": "history",
+    "duration": 480,
+    "durationFormatted": "8:00",
+    "text": null,
+    "translation": null,
+    "context": "Listen while viewing the Kaaba or during quiet moments of reflection",
+    "imageColor": "#4B3F2F"
+  },
+  {
+    "id": "dua-zamzam",
+    "title": "Dua When Drinking Zamzam",
+    "arabicTitle": "دعاء شرب ماء زمزم",
+    "description": "The blessed dua to recite when drinking the sacred Zamzam water.",
+    "category": "supplication",
+    "duration": 60,
+    "durationFormatted": "1:00",
+    "text": "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا وَاسِعًا وَشِفَاءً مِنْ كُلِّ دَاءٍ",
+    "translation": "O Allah, I ask You for beneficial knowledge, abundant provision, and cure from every illness.",
+    "context": "Recite before drinking Zamzam water, while facing the Kaaba",
+    "imageColor": "#1565C0"
+  },
+  {
+    "id": "safa-marwa-history",
+    "title": "Story of Hajar and Safa-Marwa",
+    "arabicTitle": "قصة هاجر والصفا والمروة",
+    "description": "The moving story of Hajar's search for water between Safa and Marwa — the origin of the Sa'i ritual.",
+    "category": "history",
+    "duration": 360,
+    "durationFormatted": "6:00",
+    "text": null,
+    "translation": null,
+    "context": "Listen before performing Sa'i to connect with the spirit of this ritual",
+    "imageColor": "#6A1B9A"
+  },
+  {
+    "id": "arafat-significance",
+    "title": "The Day of Arafat",
+    "arabicTitle": "يوم عرفة",
+    "description": "Understanding the profound significance of standing at Arafat — the greatest day of Hajj.",
+    "category": "education",
+    "duration": 540,
+    "durationFormatted": "9:00",
+    "text": null,
+    "translation": null,
+    "context": "Listen before the 9th of Dhul Hijjah to prepare spiritually for Arafat",
+    "imageColor": "#E65100"
+  }
+]

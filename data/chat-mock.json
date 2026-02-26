@@ -1,0 +1,57 @@
+{
+  "greeting": "As-salamu alaykum! I am your Pilgrim guide. I'm here to help you on your spiritual journey. How can I assist you today?",
+  "suggestions": [
+    "How do I perform Tawaf?",
+    "Where is Hajar al-Aswad?",
+    "What is the Talbiyah?",
+    "Guide me through Sa'i"
+  ],
+  "responses": [
+    {
+      "keywords": ["tawaf", "circumambulate", "walk around kaaba", "kaaba walk"],
+      "response": "Tawaf means circumambulating the Kaaba seven times counterclockwise, with the Kaaba on your left. Begin at the Black Stone (Hajar al-Aswad) and complete 7 full circles. After Tawaf, pray 2 rak'ahs behind Maqam Ibrahim and drink Zamzam water. Would you like me to show you the complete step-by-step guide?",
+      "action": { "label": "View Tawaf Steps", "route": "/rituals", "locationId": "kaaba" }
+    },
+    {
+      "keywords": ["hajar al-aswad", "black stone", "black rock"],
+      "response": "Hajar al-Aswad (the Black Stone) is set into the eastern corner of the Kaaba. It is believed to have descended from Heaven. During Tawaf, if possible, kiss or touch it. If not, simply point towards it with your right hand while saying 'Allahu Akbar'. Pointing from a distance is completely valid.",
+      "action": { "label": "See on map", "route": "/map", "locationId": "hajar-al-aswad" }
+    },
+    {
+      "keywords": ["zamzam", "water", "well"],
+      "response": "Zamzam is the blessed well located within Masjid al-Haram. Its water is pure and miraculous — it has been flowing for thousands of years since Allah provided it for Hajar and her son Ismail. Drink it standing, facing the Qibla, making dua for health, knowledge, and blessings.",
+      "action": { "label": "See Well of Zamzam", "route": "/map", "locationId": "zamzam" }
+    },
+    {
+      "keywords": ["sai", "sa'i", "safa", "marwa", "walking"],
+      "response": "Sa'i is the ritual of walking seven times between the hills of Safa and Marwa, commemorating Hajar's search for water for her son Ismail. Start at Safa, face the Kaaba, make dua, then walk to Marwa. Men jog in the marked green-light section. This completes Umrah along with Tawaf.",
+      "action": { "label": "Sa'i Guide", "route": "/rituals", "locationId": "safa-marwa" }
+    },
+    {
+      "keywords": ["talbiyah", "labbayk", "ihram chant"],
+      "response": "The Talbiyah is: 'Labbayk Allahumma Labbayk, Labbayk la sharika laka Labbayk, Innal hamda wa ni'mata laka wal mulk, la sharika lak.' It means: 'Here I am, O Allah, here I am. You have no partner. Verily all praise and blessings are Yours.' Men recite it aloud, women quietly.",
+      "action": null
+    },
+    {
+      "keywords": ["ihram", "garment", "white cloth", "wear"],
+      "response": "Ihram is the sacred state pilgrims enter before performing Hajj or Umrah. Men wear two unstitched white cloths — the Izar (lower) and Rida (upper). Women wear their regular modest clothing. Enter Ihram at the Miqat station and make your intention (Niyyah). Avoid sewn garments, perfume, and cutting hair/nails.",
+      "action": { "label": "Ihram Guide", "route": "/rituals" }
+    },
+    {
+      "keywords": ["arafat", "mount arafat", "wuquf", "stand"],
+      "response": "Mount Arafat is the most critical site of Hajj. Standing at Arafat (Wuquf) on the 9th of Dhul Hijjah is the most important pillar of Hajj — 'Hajj is Arafat.' Spend the afternoon in prayer, supplication, and remembrance. This is your greatest chance for forgiveness and spiritual renewal.",
+      "action": { "label": "See Arafat on map", "route": "/map", "locationId": "arafat" }
+    },
+    {
+      "keywords": ["prayer", "salah", "salat", "pray"],
+      "response": "Prayers in Masjid al-Haram are 100,000 times more rewarding than anywhere else. All five daily prayers are performed here. The qibla (direction of prayer) is towards the Kaaba itself. Prayer times follow Mecca's schedule. Try to join the congregational prayers for maximum blessing.",
+      "action": null
+    },
+    {
+      "keywords": ["hajj", "pilgrimage", "five pillars"],
+      "response": "Hajj is the fifth pillar of Islam and is obligatory once in a lifetime for every Muslim who is physically and financially able. It takes place in the first ten days of Dhul Hijjah. Key rituals include: Ihram, Tawaf, Sa'i, standing at Arafat, Muzdalifah, Mina, stoning the Jamarat, and Eid al-Adha sacrifice.",
+      "action": { "label": "Hajj Rituals Guide", "route": "/rituals" }
+    }
+  ],
+  "fallback": "Jazak Allah Khayran for your question. I recommend speaking with a knowledgeable scholar or guide for detailed guidance on this matter. I'm here to provide general spiritual guidance for your Hajj and Umrah journey. Is there anything else I can help you with?"
+}

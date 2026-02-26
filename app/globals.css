@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 14% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14% 4%;
+
+    --primary: 37 60% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 20% 96%;
+    --secondary-foreground: 20 14% 4%;
+
+    --muted: 30 15% 96%;
+    --muted-foreground: 20 10% 40%;
+
+    --accent: 37 60% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 20 10% 90%;
+    --input: 20 10% 90%;
+    --ring: 37 60% 45%;
+
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2 {
+    @apply font-serif;
+  }
+
+  h3, h4, h5, h6 {
+    @apply font-sans font-semibold;
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply max-w-[480px] mx-auto min-h-screen bg-background relative overflow-x-hidden;
+  }
+
+  .bottom-nav-height {
+    height: 72px;
+  }
+
+  .content-with-nav {
+    @apply pb-20;
+  }
+
+  .pilgrim-card {
+    @apply bg-white border border-gray-100 rounded-2xl;
+  }
+
+  .section-padding {
+    @apply px-4 py-6;
+  }
+
+  .exhibit-caption {
+    @apply text-xs text-muted-foreground tracking-wider uppercase font-sans;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-gray-200
+           bg-white text-foreground cursor-pointer select-none
+           transition-transform duration-150 active:scale-95 hover:border-pilgrim-gold hover:text-pilgrim-gold;
+  }
+
+  .btn-primary {
+    @apply bg-pilgrim-gold text-white rounded-xl px-5 py-3 font-sans font-medium text-sm
+           active:opacity-90 hover:bg-pilgrim-gold-light transition-colors duration-150
+           min-h-[44px] inline-flex items-center justify-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-foreground border border-gray-200 rounded-xl px-5 py-3
+           font-sans font-medium text-sm active:bg-gray-50 hover:border-gray-300
+           transition-colors duration-150 min-h-[44px] inline-flex items-center justify-center gap-2;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}

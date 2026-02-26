@@ -1,0 +1,122 @@
+[
+  {
+    "id": "masjid-haram-tour",
+    "title": "Masjid al-Haram",
+    "arabicTitle": "المسجد الحرام",
+    "description": "Explore the holiest mosque in Islam — the Grand Mosque of Mecca, which surrounds the sacred Kaaba.",
+    "shortDescription": "The Grand Mosque of Mecca",
+    "duration": "20 min",
+    "stops": 6,
+    "category": "mosque",
+    "coverColor": "#B8962E",
+    "highlights": ["Al-Kaaba", "Hajar al-Aswad", "Zamzam Well", "Maqam Ibrahim", "Safa & Marwa", "Gates of al-Haram"],
+    "scenes": [
+      {
+        "id": "entrance",
+        "title": "The Gates of Al-Haram",
+        "description": "The Grand Mosque has 95 gates. The most famous is Bab al-Salam (Gate of Peace), used traditionally for entering. As you step through, say 'Bismillah' and recite the dua for entering the mosque.",
+        "order": 1
+      },
+      {
+        "id": "first-sight",
+        "title": "First Sight of the Kaaba",
+        "description": "The moment you first see the Kaaba, raise your hands and make dua — this is a moment when prayers are accepted. Take a moment to absorb the magnitude of what you are witnessing.",
+        "order": 2
+      },
+      {
+        "id": "kaaba-closeup",
+        "title": "The Sacred Kaaba",
+        "description": "The cube-shaped structure draped in black Kiswah cloth embroidered with gold Quranic verses. Prophet Ibrahim and his son Ismail built this house of worship. All Muslims face it during prayer.",
+        "order": 3
+      },
+      {
+        "id": "black-stone",
+        "title": "Hajar al-Aswad",
+        "description": "Embedded in the southeastern corner at about shoulder height. The Black Stone was placed by the Prophet Muhammad (PBUH). It is 'kissed' or pointed to at the start of each circuit of Tawaf.",
+        "order": 4
+      },
+      {
+        "id": "zamzam-area",
+        "title": "The Zamzam Well",
+        "description": "Below the mosque floor, the ancient well of Zamzam has been providing water for thousands of years. Drinking stations are throughout the mosque. This water is holy and carries blessings.",
+        "order": 5
+      },
+      {
+        "id": "safa-marwa-corridor",
+        "title": "Safa and Marwa Corridor",
+        "description": "The marble-floored corridor connecting the two hills of Safa and Marwa. Air-conditioned and covered, it stretches about 450 meters. Pilgrims walk this path seven times during Sa'i.",
+        "order": 6
+      }
+    ]
+  },
+  {
+    "id": "mina-tour",
+    "title": "Mina Valley",
+    "arabicTitle": "منى",
+    "description": "Discover the Valley of Mina, where pilgrims spend key nights during Hajj and perform the stoning of the Jamarat.",
+    "shortDescription": "Valley of Tents — the city of pilgrims",
+    "duration": "15 min",
+    "stops": 4,
+    "category": "hajj",
+    "coverColor": "#2E7D32",
+    "highlights": ["Jamarat Bridge", "Pilgrims' Tents", "Masjid al-Khaif", "Valley Landscape"],
+    "scenes": [
+      {
+        "id": "mina-valley",
+        "title": "The Valley of Mina",
+        "description": "Mina is a valley about 8 km east of the Grand Mosque. During Hajj, it hosts over 3 million pilgrims in white tents. The entire valley transforms into a temporary city.",
+        "order": 1
+      },
+      {
+        "id": "jamarat",
+        "title": "The Jamarat Bridge",
+        "description": "Pilgrims stone three pillars (Jamarat) representing the devil. The ritual commemorates Ibrahim's rejection of Shaytan's temptation. Stone each Jamarat with 7 small pebbles, saying 'Allahu Akbar' with each throw.",
+        "order": 2
+      },
+      {
+        "id": "masjid-khaif",
+        "title": "Masjid al-Khaif",
+        "description": "One of the oldest mosques in Islam, located in Mina. The Prophet Muhammad (PBUH) is reported to have prayed here multiple times. It can accommodate thousands of worshippers.",
+        "order": 3
+      },
+      {
+        "id": "tent-city",
+        "title": "The Tent City",
+        "description": "Modern air-conditioned tents now house pilgrims in Mina. The sight of millions of white tents filling the valley is one of the most powerful images in the world.",
+        "order": 4
+      }
+    ]
+  },
+  {
+    "id": "arafat-tour",
+    "title": "Mount Arafat",
+    "arabicTitle": "جبل عرفات",
+    "description": "A spiritual journey to the mountain of mercy where the Prophet delivered his farewell sermon.",
+    "shortDescription": "The Mountain of Mercy",
+    "duration": "12 min",
+    "stops": 3,
+    "category": "hajj",
+    "coverColor": "#E65100",
+    "highlights": ["Jabal al-Rahmah", "Masjid al-Nimra", "Plains of Arafat"],
+    "scenes": [
+      {
+        "id": "plains-arafat",
+        "title": "The Plains of Arafat",
+        "description": "A vast plain 20km east of Mecca. On the 9th of Dhul Hijjah, millions of pilgrims gather here from midday to sunset in prayer and supplication — the central act of Hajj.",
+        "order": 1
+      },
+      {
+        "id": "jabal-rahma",
+        "title": "Jabal al-Rahmah",
+        "description": "The Hill of Mercy where the Prophet Muhammad (PBUH) delivered his Farewell Sermon in 632 CE. A white pillar marks the spot. Pilgrims climb it and make dua.",
+        "order": 2
+      },
+      {
+        "id": "farewell-sermon",
+        "title": "The Farewell Sermon",
+        "description": "'O people, listen to what I say... All mankind is from Adam and Eve. An Arab has no superiority over a non-Arab, nor a non-Arab over an Arab...' — Prophet Muhammad (PBUH), Arafat, 9 Dhul Hijjah 10 AH.",
+        "order": 3
+      }
+    ]
+  }
+]

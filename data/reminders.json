@@ -1,0 +1,17 @@
+{
+  "defaults": [],
+  "ritualOptions": [
+    { "id": "fajr-prayer", "label": "Fajr Prayer", "category": "prayer" },
+    { "id": "dhuhr-prayer", "label": "Dhuhr Prayer", "category": "prayer" },
+    { "id": "asr-prayer", "label": "Asr Prayer", "category": "prayer" },
+    { "id": "maghrib-prayer", "label": "Maghrib Prayer", "category": "prayer" },
+    { "id": "isha-prayer", "label": "Isha Prayer", "category": "prayer" },
+    { "id": "tawaf-time", "label": "Tawaf Session", "category": "ritual" },
+    { "id": "sai-time", "label": "Sa'i Walk", "category": "ritual" },
+    { "id": "arafat-standing", "label": "Stand at Arafat (9 Dhul Hijjah)", "category": "hajj" },
+    { "id": "muzdalifah-night", "label": "Night at Muzdalifah", "category": "hajj" },
+    { "id": "jamarat-stoning", "label": "Jamarat Stoning", "category": "hajj" },
+    { "id": "eid-sacrifice", "label": "Eid al-Adha Sacrifice", "category": "hajj" },
+    { "id": "custom", "label": "Custom Reminder", "category": "custom" }
+  ]
+}
