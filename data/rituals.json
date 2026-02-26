@@ -1,0 +1,152 @@
+[
+  {
+    "id": "tawaf",
+    "name": "Tawaf",
+    "arabicName": "طواف",
+    "description": "Circumambulation of the Kaaba seven times counterclockwise",
+    "category": "umrah",
+    "duration": "30-60 min",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Make Intention (Niyyah)",
+        "description": "Stand at the Black Stone corner (Hajar al-Aswad) and make your intention for Tawaf. Face the Kaaba and say: 'Bismillah, Allahu Akbar'",
+        "dua": "بِسْمِ اللَّهِ اللَّهُ أَكْبَرُ",
+        "duaTranslation": "In the name of Allah, Allah is the Greatest",
+        "tip": "Ensure you are in a state of ritual purity (Wudu) before beginning Tawaf."
+      },
+      {
+        "number": 2,
+        "title": "Start at Hajar al-Aswad",
+        "description": "If possible, kiss or touch the Black Stone. If not able, face it and point towards it with your right hand while saying 'Allahu Akbar'.",
+        "tip": "Do not push or harm others to reach the stone. Pointing from a distance is perfectly valid."
+      },
+      {
+        "number": 3,
+        "title": "Walk Counterclockwise",
+        "description": "Keep the Kaaba on your left side and walk counterclockwise. This is one circuit (shawt). You need to complete seven circuits.",
+        "tip": "Men should expose their right shoulder (Idtiba) during Tawaf. Keep your right shoulder bare."
+      },
+      {
+        "number": 4,
+        "title": "Pass Al-Hijr (Hateem)",
+        "description": "When passing the semicircular wall (Al-Hijr or Hateem), walk outside it. This semicircular area is considered part of the Kaaba.",
+        "tip": "It is Sunnah to make special dua while at the Multazam (the wall between the Black Stone and the door of the Kaaba)."
+      },
+      {
+        "number": 5,
+        "title": "Complete Seven Circuits",
+        "description": "Continue walking until you complete seven full circuits. Each circuit ends when you return to the Black Stone corner.",
+        "tip": "Recite duas freely during Tawaf. There are no specific duas required, though many traditional duas are recommended."
+      },
+      {
+        "number": 6,
+        "title": "Pray Behind Maqam Ibrahim",
+        "description": "After completing seven circuits, pray two rak'ahs (units of prayer) behind Maqam Ibrahim if possible. Recite Surah Al-Kafirun and Surah Al-Ikhlas.",
+        "dua": "رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ",
+        "duaTranslation": "Our Lord, accept this from us. Indeed, You are the Hearing, the Knowing.",
+        "tip": "If you cannot pray behind Maqam Ibrahim due to crowds, you may pray anywhere in the mosque."
+      },
+      {
+        "number": 7,
+        "title": "Drink Zamzam Water",
+        "description": "After your prayers, go to the Zamzam water station and drink, making dua while drinking and facing the Kaaba.",
+        "dua": "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْماً نَافِعاً وَرِزْقاً وَاسِعاً وَشِفَاءً مِنْ كُلِّ دَاءٍ",
+        "duaTranslation": "O Allah, I ask You for beneficial knowledge, abundant provision, and cure from all diseases.",
+        "tip": "Drink while standing, facing the Qibla, and in three gulps. Zamzam is pure and blessed."
+      }
+    ]
+  },
+  {
+    "id": "sai",
+    "name": "Sa'i",
+    "arabicName": "السعي",
+    "description": "Walking seven times between the hills of Safa and Marwa",
+    "category": "umrah",
+    "duration": "30-45 min",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Proceed to Mount Safa",
+        "description": "After Tawaf and Zamzam water, proceed to the hill of Safa. Climb it until you can see the Kaaba, then face the Kaaba.",
+        "tip": "Sa'i is performed in a state of ritual purity, but Wudu is not strictly required."
+      },
+      {
+        "number": 2,
+        "title": "Make Dua at Safa",
+        "description": "At Safa, face the Kaaba, raise your hands, and recite the opening dua three times.",
+        "dua": "إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ",
+        "duaTranslation": "Indeed, Safa and Marwa are among the symbols of Allah",
+        "tip": "Make heartfelt personal dua in your own language here. This is a powerful moment."
+      },
+      {
+        "number": 3,
+        "title": "Walk to Marwa (First Lap)",
+        "description": "Walk from Safa towards Marwa. In the area marked by green lights, men should walk briskly (or jog slightly). Women walk at normal pace throughout.",
+        "tip": "The green light area represents the valley where Hajar searched desperately for water."
+      },
+      {
+        "number": 4,
+        "title": "Make Dua at Marwa",
+        "description": "Climb Marwa, face the Kaaba, and make dua. This completes the first lap. You now need 6 more laps.",
+        "tip": "One lap is from Safa to Marwa. The return trip (Marwa to Safa) counts as the second lap."
+      },
+      {
+        "number": 5,
+        "title": "Complete Seven Laps",
+        "description": "Continue walking back and forth. Start at Safa (lap 1), end at Marwa (lap 7). Always make dua at each hill.",
+        "tip": "Keep track of your laps. The Sa'i ends at Marwa (odd-numbered laps end at Marwa, even at Safa)."
+      },
+      {
+        "number": 6,
+        "title": "Hair Cutting (Halq or Taqsir)",
+        "description": "After completing Sa'i, men should cut or shave their hair. Women cut a small piece (fingertip length) of their hair. This officially ends Umrah.",
+        "tip": "Hair cutting releases you from Ihram restrictions for Umrah."
+      }
+    ]
+  },
+  {
+    "id": "ihram",
+    "name": "Ihram",
+    "arabicName": "الإحرام",
+    "description": "The sacred state and garments of pilgrimage",
+    "category": "both",
+    "duration": "Preparation",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Purification (Ghusl)",
+        "description": "Perform a full ritual bath (Ghusl). This is Sunnah before entering Ihram. It applies to both men and women.",
+        "tip": "If Ghusl is not possible, perform Wudu (ablution)."
+      },
+      {
+        "number": 2,
+        "title": "Men's Ihram Garments",
+        "description": "Men wear two unstitched white cloths: one wrapped around the waist (Izar) and one draped over the upper body (Rida). No underwear or sewn garments.",
+        "tip": "Choose lightweight, breathable fabric suitable for Mecca's heat."
+      },
+      {
+        "number": 3,
+        "title": "Women's Ihram",
+        "description": "Women wear their regular modest clothing that covers the body (except face and hands). Women do not have a specific 'uniform' for Ihram.",
+        "tip": "Women should not wear niqab (face veil) or gloves while in Ihram."
+      },
+      {
+        "number": 4,
+        "title": "Make Intention (Niyyah)",
+        "description": "At the Miqat (boundary station), make your intention for Umrah or Hajj. Say: 'Labbayk Allahumma Umrah' for Umrah or 'Labbayk Allahumma Hajj' for Hajj.",
+        "dua": "لَبَّيْكَ اللَّهُمَّ عُمْرَةً",
+        "duaTranslation": "Here I am, O Allah, for Umrah",
+        "tip": "The Miqat for those coming from most directions is at Dhul Hulaifa (Abyar Ali), Juhfa, Qarn al-Manazil, Yalamlam, or Dhat Irq."
+      },
+      {
+        "number": 5,
+        "title": "Recite Talbiyah",
+        "description": "After making intention, begin reciting the Talbiyah continuously until arrival in Mecca.",
+        "dua": "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ",
+        "duaTranslation": "Here I am, O Allah, here I am. Here I am, You have no partner, here I am. Verily all praise and blessings are Yours, and all sovereignty. You have no partner.",
+        "tip": "Men recite Talbiyah aloud; women recite quietly."
+      }
+    ]
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "kaaba",
+    "name": "Al-Kaaba",
+    "arabicName": "الكعبة المشرفة",
+    "position": [0, 0, 0],
+    "description": "The Kaaba is the most sacred site in Islam. It is a cube-shaped structure at the center of Al-Masjid Al-Haram in Mecca, Saudi Arabia. Muslims around the world face the Kaaba during prayers.",
+    "shortDescription": "The most sacred site in Islam",
+    "category": "sacred",
+    "tip": "Circumambulate the Kaaba seven times counterclockwise, starting from the Black Stone.",
+    "coordinates": { "lat": 21.4225, "lng": 39.8262 }
+  },
+  {
+    "id": "hajar-al-aswad",
+    "name": "Hajar al-Aswad",
+    "arabicName": "الحجر الأسود",
+    "position": [1.5, 0, 0],
+    "description": "The Black Stone is a sacred stone set into the eastern corner of the Kaaba. It is believed to have descended from heaven and was placed in its current position by the Prophet Muhammad (PBUH).",
+    "shortDescription": "The sacred Black Stone of the Kaaba",
+    "category": "sacred",
+    "tip": "If possible, touch or kiss the Black Stone. If not, point towards it during Tawaf.",
+    "coordinates": { "lat": 21.4225, "lng": 39.8265 }
+  },
+  {
+    "id": "zamzam",
+    "name": "Well of Zamzam",
+    "arabicName": "بئر زمزم",
+    "position": [-2, 0, 1],
+    "description": "The Zamzam Well is a well located within the Masjid al-Haram in Mecca. It is one of the most visited places in Islam, as it is the sacred water that Hajar drank from when searching for water for her son Ismail.",
+    "shortDescription": "The sacred well of miraculous water",
+    "category": "water",
+    "tip": "Drink Zamzam water while standing and facing the Kaaba. Make dua before drinking.",
+    "coordinates": { "lat": 21.4227, "lng": 39.8264 }
+  },
+  {
+    "id": "safa-marwa",
+    "name": "Safa and Marwa",
+    "arabicName": "الصفا والمروة",
+    "position": [3, 0, -1],
+    "description": "The two hills of Safa and Marwa are located inside Masjid al-Haram. The ritual of Sa'i involves walking seven times between these hills, commemorating Hajar's search for water for her son Ismail.",
+    "shortDescription": "The hills of Safa and Marwa",
+    "category": "ritual",
+    "tip": "Walk (or run) seven times between Safa and Marwa, starting from Safa. Recite duas at each hill.",
+    "coordinates": { "lat": 21.4230, "lng": 39.8268 }
+  },
+  {
+    "id": "maqam-ibrahim",
+    "name": "Maqam Ibrahim",
+    "arabicName": "مقام إبراهيم",
+    "position": [-1, 0, 0.5],
+    "description": "The Station of Ibrahim is a small stone with the footprints of Prophet Ibrahim (Abraham). According to Islamic tradition, Ibrahim stood on this stone while building the Kaaba.",
+    "shortDescription": "Station of Prophet Ibrahim",
+    "category": "sacred",
+    "tip": "After Tawaf, pray two rak'ahs behind Maqam Ibrahim if possible.",
+    "coordinates": { "lat": 21.4224, "lng": 39.8263 }
+  },
+  {
+    "id": "arafat",
+    "name": "Mount Arafat",
+    "arabicName": "جبل عرفات",
+    "position": [5, 0, 3],
+    "description": "Mount Arafat is a granite hill east of Mecca. It is the site of the Prophet Muhammad's farewell sermon and is central to the Hajj pilgrimage. Standing on Arafat (Wuquf) on the 9th of Dhul Hijjah is considered the most important pillar of Hajj.",
+    "shortDescription": "The gathering place for Hajj pilgrims",
+    "category": "hajj",
+    "tip": "Spend the afternoon of the 9th Dhul Hijjah at Arafat in prayer and remembrance. This is the pinnacle of Hajj.",
+    "coordinates": { "lat": 21.3549, "lng": 39.9840 }
+  }
+]
