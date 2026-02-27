@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Compass, ArrowLeft, MapPin, CaretRight, CheckCircle } from '@phosphor-icons/react'
+import { PageHeader } from '@/components/layout/page-header'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
@@ -146,19 +147,11 @@ export default function ToursPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="px-4 pt-6 pb-4">
-        <div className="flex items-center gap-2 mb-1">
-          <Compass size={18} className="text-pilgrim-gold" weight="fill" />
-          <span className="exhibit-caption">Virtual Tours</span>
-        </div>
-        <h1 className="font-serif text-2xl font-semibold text-foreground">
-          Explore the Sites
-        </h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Guided virtual tours of sacred locations
-        </p>
-      </div>
+      <PageHeader
+        title="Virtual Tours"
+        arabicTitle="جولات افتراضية"
+        subtitle="Guided tours of sacred locations"
+      />
 
       {/* Tour cards */}
       <div className="px-4 space-y-4 pb-6">

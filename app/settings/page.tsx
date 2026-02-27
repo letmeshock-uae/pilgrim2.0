@@ -15,6 +15,7 @@ import {
 import { Switch } from '@/components/ui/switch'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
+import { PageHeader } from '@/components/layout/page-header'
 
 type SettingRow = {
   id: string
@@ -107,16 +108,11 @@ export default function SettingsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="px-4 pt-6 pb-4">
-        <div className="flex items-center gap-2 mb-1">
-          <GearSix size={18} className="text-pilgrim-gold" weight="fill" />
-          <span className="exhibit-caption">Settings</span>
-        </div>
-        <h1 className="font-serif text-2xl font-semibold text-foreground">
-          Preferences
-        </h1>
-      </div>
+      <PageHeader
+        title="Settings"
+        arabicTitle="الإعدادات"
+        subtitle="App preferences"
+      />
 
       {/* App identity */}
       <motion.div

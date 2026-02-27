@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
-import { BottomNav } from '@/components/layout/bottom-nav'
 
 export const metadata: Metadata = {
   title: 'Pilgrim — Hajj & Umrah Guide',
@@ -20,7 +19,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#ffffff',
+  themeColor: '#1c1c1e',
 }
 
 export default function RootLayout({
@@ -38,12 +37,12 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-gray-50 min-h-screen">
-        <div className="page-container shadow-[0_0_40px_rgba(0,0,0,0.08)]">
-          <main className="content-with-nav">
-            {children}
-          </main>
-          <BottomNav />
+      <body className="bg-neutral-300">
+        <div
+          id="app-root"
+          className="max-w-[480px] mx-auto min-h-[100dvh] bg-background relative shadow-[0_0_60px_rgba(0,0,0,0.15)]"
+        >
+          {children}
         </div>
       </body>
     </html>

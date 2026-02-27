@@ -1,111 +1,332 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import dynamic from 'next/dynamic'
-import { motion } from 'framer-motion'
-import { GearSix } from '@phosphor-icons/react'
-import Link from 'next/link'
-import { ChatSheet } from '@/components/chat/chat-sheet'
-import { LocationCard } from '@/components/cards/location-card'
+import { motion, AnimatePresence } from 'framer-motion'
+import { List, Waveform, PaperPlaneTilt, Sparkle } from '@phosphor-icons/react'
+import { BurgerMenu } from '@/components/layout/burger-menu'
+import { EditorialText } from '@/components/chat/editorial-text'
 import { usePilgrimStore } from '@/lib/store/pilgrim-store'
-import locations from '@/data/locations.json'
-import type { Location } from '@/types'
+import { usePilgrimAi } from '@/hooks/use-pilgrim-ai'
+import chatMock from '@/data/chat-mock.json'
 
-// Dynamically import 3D scene to avoid SSR issues
+// ─── Constants ────────────────────────────────────────────────────────────────
+const INPUT_H = 84   // px — input bar height
+const HANDLE_H = 28  // px — drag handle zone height
+const RATIO_DEFAULT = 0.68  // scene fraction of available space
+const RATIO_CHAT = 0.36     // scene fraction when conversation is active
+const RATIO_MIN = 0.16
+const RATIO_MAX = 0.86
+
+// ─── Quick actions ─────────────────────────────────────────────────────────────
+const QUICK_ACTIONS = [
+  {
+    id: 'journey',
+    label: 'Start journey',
+    desc: 'to a holy place',
+    message: 'Tell me about starting the Hajj pilgrimage journey to Mecca',
+  },
+  {
+    id: 'explore',
+    label: 'Look around',
+    desc: 'on your own',
+    message: null,
+  },
+  {
+    id: 'ask',
+    label: 'Ask anything',
+    desc: 'or find out why',
+    message: null,
+  },
+]
+
+// ─── Dynamic 3D scene ─────────────────────────────────────────────────────────
 const KaabaScene = dynamic(
   () => import('@/components/scene/kaaba-scene').then((m) => m.KaabaScene),
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-full bg-[#F9F9F9] flex items-center justify-center">
-        <div className="text-center space-y-3">
-          <div className="w-12 h-12 rounded-full border-2 border-pilgrim-gold/30 border-t-pilgrim-gold animate-spin mx-auto" />
-          <p className="text-xs text-muted-foreground font-sans">Loading sacred space...</p>
-        </div>
+      <div className="w-full h-full bg-[#1C1C1E] flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full border-2 border-white/20 border-t-white/70 animate-spin" />
       </div>
     ),
   }
 )
 
+// ─── Typing indicator ─────────────────────────────────────────────────────────
+function TypingDots() {
+  return (
+    <div className="flex items-center gap-1.5 px-1 py-2">
+      {[0, 0.18, 0.36].map((delay) => (
+        <motion.div
+          key={delay}
+          className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40"
+          animate={{ y: [-3, 3, -3] }}
+          transition={{ duration: 0.75, repeat: Infinity, delay, ease: 'easeInOut' }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// ─── Main page ────────────────────────────────────────────────────────────────
 export default function HomePage() {
-  const { sheetState, selectedLocationId, setSelectedLocation } = usePilgrimStore()
-  const [selectedLocation, setSelectedLocationState] = useState<Location | null>(null)
+  const { messages, isLoading } = usePilgrimStore()
+  const { sendMessage } = usePilgrimAi()
 
-  const sceneHeight =
-    sheetState === 'full'
-      ? 'h-[20vh]'
-      : sheetState === 'half'
-      ? 'h-[calc(45vh)]'
-      : 'h-[calc(100vh-152px)]'
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [inputValue, setInputValue] = useState('')
+  const [splitRatio, setSplitRatio] = useState(RATIO_DEFAULT)
+  const [isDragging, setIsDragging] = useState(false)
 
-  const handleLocationSelect = (id: string) => {
-    const loc = locations.find((l) => l.id === id) as Location | undefined
-    if (loc) setSelectedLocationState(loc)
+  const splitRatioRef = useRef(RATIO_DEFAULT)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  const hasMessages = messages.length > 0
+
+  // Auto-resize scene when conversation starts
+  useEffect(() => {
+    if (hasMessages && splitRatioRef.current > RATIO_CHAT + 0.04) {
+      splitRatioRef.current = RATIO_CHAT
+      setSplitRatio(RATIO_CHAT)
+    }
+  }, [hasMessages])
+
+  // Scroll to bottom on new messages
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages, isLoading])
+
+  // ── Drag handle ────────────────────────────────────────────────────────────
+  const handleDragStart = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      e.preventDefault()
+      setIsDragging(true)
+
+      const startY = e.clientY
+      const startRatio = splitRatioRef.current
+      const totalH = window.innerHeight - INPUT_H - HANDLE_H
+
+      const onMove = (me: PointerEvent) => {
+        const dy = me.clientY - startY
+        const next = Math.min(RATIO_MAX, Math.max(RATIO_MIN, startRatio + dy / totalH))
+        splitRatioRef.current = next
+        setSplitRatio(next)
+      }
+
+      const onUp = () => {
+        setIsDragging(false)
+        window.removeEventListener('pointermove', onMove)
+        window.removeEventListener('pointerup', onUp)
+      }
+
+      window.addEventListener('pointermove', onMove, { passive: true })
+      window.addEventListener('pointerup', onUp)
+    },
+    []
+  )
+
+  // ── Send message ───────────────────────────────────────────────────────────
+  const handleSend = useCallback(async () => {
+    const text = inputValue.trim()
+    if (!text || isLoading) return
+    setInputValue('')
+    await sendMessage(text)
+  }, [inputValue, isLoading, sendMessage])
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      handleSend()
+    }
   }
 
-  const handleCloseCard = () => {
-    setSelectedLocationState(null)
-    setSelectedLocation(null)
+  // ── Quick action ───────────────────────────────────────────────────────────
+  const handleQuickAction = (action: (typeof QUICK_ACTIONS)[number]) => {
+    if (action.message) {
+      sendMessage(action.message)
+    } else if (action.id === 'ask') {
+      inputRef.current?.focus()
+    } else {
+      console.log('explore mode')
+    }
+  }
+
+  // CSS-driven height with smooth transition (avoids Framer Motion calc issues)
+  const sceneStyle: React.CSSProperties = {
+    height: `calc((100dvh - ${INPUT_H + HANDLE_H}px) * ${splitRatio})`,
+    transition: isDragging ? 'none' : 'height 0.55s cubic-bezier(0.34, 1.3, 0.64, 1)',
+    minHeight: 96,
   }
 
   return (
-    <div className="relative min-h-screen bg-[#F9F9F9]">
-      {/* Top bar */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-4 pt-4 pb-2">
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <h1 className="font-serif text-xl font-semibold text-foreground tracking-tight">
+    <div className="h-[100dvh] flex flex-col overflow-hidden relative bg-[#F5F4F0]">
+
+      {/* ── 3D Scene ───────────────────────────────────────────────────────── */}
+      <div
+        className="relative flex-none bg-[#1C1C1E] rounded-b-[28px] overflow-hidden"
+        style={sceneStyle}
+      >
+        <KaabaScene onLocationSelect={() => {}} />
+
+        {/* Top-left: title */}
+        <div className="absolute top-4 left-4 z-10 pointer-events-none">
+          <p className="font-serif text-white text-[17px] font-semibold drop-shadow">
             Pilgrim
-          </h1>
-          <p className="text-[11px] text-muted-foreground font-sans mt-0.5">
+          </p>
+          <p className="text-white/45 text-[10px] font-sans mt-0.5">
             Masjid al-Haram · Mecca
           </p>
-        </motion.div>
-        <Link
-          href="/settings"
-          className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm border border-gray-100 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-          aria-label="Settings"
+        </div>
+
+        {/* Top-right: burger button */}
+        <button
+          onClick={() => setMenuOpen(true)}
+          className="absolute top-4 right-4 w-11 h-11 bg-white rounded-[16px] flex items-center justify-center z-10 active:scale-95 transition-transform"
+          style={{ boxShadow: '0 2px 14px rgba(0,0,0,0.28)' }}
+          aria-label="Open navigation menu"
+          aria-expanded={menuOpen}
         >
-          <GearSix size={18} weight="regular" />
-        </Link>
+          <List size={18} weight="bold" className="text-foreground" />
+        </button>
+
+        {/* Bottom: quick action cards (disappear once chat starts) */}
+        <AnimatePresence>
+          {!hasMessages && (
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className="absolute bottom-4 left-4 right-4 flex gap-2"
+            >
+              {QUICK_ACTIONS.map((action) => (
+                <button
+                  key={action.id}
+                  onClick={() => handleQuickAction(action)}
+                  className="flex-1 bg-white/90 backdrop-blur-md rounded-[18px] p-3 text-left transition-all active:scale-[0.96] active:bg-white/75"
+                >
+                  <p className="text-[12px] font-semibold text-foreground leading-tight">
+                    {action.label}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mt-0.5 leading-tight">
+                    {action.desc}
+                  </p>
+                </button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* 3D Scene */}
-      <motion.div
-        className={`transition-all duration-500 ease-in-out ${sceneHeight}`}
-        style={{ minHeight: '150px' }}
+      {/* ── Drag handle ────────────────────────────────────────────────────── */}
+      <div
+        style={{ height: HANDLE_H }}
+        className="flex-none flex justify-center items-center cursor-row-resize select-none touch-none"
+        onPointerDown={handleDragStart}
+        aria-label="Drag to resize"
+        role="separator"
+        aria-orientation="horizontal"
       >
-        <KaabaScene onLocationSelect={handleLocationSelect} />
-      </motion.div>
+        <div className="w-9 h-[5px] rounded-full bg-gray-300" />
+      </div>
 
-      {/* Scene legend */}
-      {sheetState === 'collapsed' && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="px-4 py-3 flex gap-2 overflow-x-auto scrollbar-hide"
-        >
-          {locations.map((loc) => (
+      {/* ── Content: messages or empty state ──────────────────────────────── */}
+      <div className="flex-1 overflow-y-auto bg-white scrollbar-hide">
+        {hasMessages ? (
+          <div className="px-5 pt-5 pb-6 space-y-8">
+            {messages.map((msg) => (
+              <div key={msg.id}>
+                {msg.role === 'user' ? (
+                  /* User message — centered pill */
+                  <div className="flex justify-center">
+                    <span className="inline-block bg-gray-100 rounded-full px-4 py-2 text-[13px] font-medium text-foreground/75 text-center max-w-[90%] leading-snug">
+                      {msg.text}
+                    </span>
+                  </div>
+                ) : (
+                  /* AI response — editorial text with gold highlights */
+                  <div className="space-y-3">
+                    <EditorialText text={msg.text} />
+                    {msg.action && (
+                      <button
+                        className="chip text-[12px]"
+                        onClick={() => console.log('Navigate to', msg.action?.route)}
+                      >
+                        {msg.action.label} →
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {isLoading && <TypingDots />}
+            <div ref={messagesEndRef} />
+          </div>
+        ) : (
+          /* Empty / welcome state */
+          <div className="h-full flex flex-col items-center justify-center px-8 py-4 text-center">
+            <div className="w-10 h-10 rounded-full bg-pilgrim-gold-soft border border-pilgrim-gold/25 flex items-center justify-center mb-3">
+              <Sparkle size={17} weight="fill" className="text-pilgrim-gold" />
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Ask anything about the sacred sites, rituals, or history of Hajj and Umrah
+            </p>
+            <div className="flex flex-wrap gap-2 justify-center mt-4">
+              {chatMock.suggestions.map((s) => (
+                <button key={s} className="chip text-[11px]" onClick={() => sendMessage(s)}>
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* ── Input bar ──────────────────────────────────────────────────────── */}
+      <div
+        style={{ height: INPUT_H }}
+        className="flex-none bg-white border-t border-gray-100 px-4 flex flex-col justify-center gap-1.5"
+      >
+        <div className="flex items-center gap-2">
+          <div className="flex-1 relative">
+            <input
+              ref={inputRef}
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Ask anything"
+              aria-label="Ask a question about Hajj or Umrah"
+              disabled={isLoading}
+              className="w-full h-12 pl-4 pr-12 bg-gray-100 rounded-2xl text-sm text-foreground placeholder:text-muted-foreground/55 focus:outline-none focus:ring-2 focus:ring-pilgrim-gold/20 disabled:opacity-60 transition-all"
+            />
+            {/* Action icon inside input */}
             <button
-              key={loc.id}
-              onClick={() => handleLocationSelect(loc.id)}
-              className="chip flex-shrink-0 text-xs"
+              onClick={inputValue.trim() ? handleSend : () => console.log('voice')}
+              aria-label={inputValue.trim() ? 'Send' : 'Voice input'}
+              disabled={isLoading}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-xl flex items-center justify-center transition-all active:scale-90 disabled:opacity-40"
+              style={{ backgroundColor: inputValue.trim() ? '#B8962E' : 'transparent' }}
             >
-              {loc.name}
+              {inputValue.trim() ? (
+                <PaperPlaneTilt size={14} weight="fill" className="text-white" />
+              ) : (
+                <Waveform size={16} className="text-muted-foreground/60" />
+              )}
             </button>
-          ))}
-        </motion.div>
-      )}
+          </div>
+        </div>
 
-      {/* Location info card */}
-      <LocationCard location={selectedLocation} onClose={handleCloseCard} />
+        <p className="text-center text-[10px] text-muted-foreground/35 font-sans leading-none">
+          Powered by Pilgrim
+        </p>
+      </div>
 
-      {/* Chat Sheet */}
-      <ChatSheet />
+      {/* ── Burger menu (absolute, within page bounds) ─────────────────────── */}
+      <BurgerMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
     </div>
   )
 }

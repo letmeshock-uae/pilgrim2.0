@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, X, Compass, Info } from '@phosphor-icons/react'
+import { PageHeader } from '@/components/layout/page-header'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import locations from '@/data/locations.json'
@@ -111,19 +112,11 @@ export default function MapPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="px-4 pt-6 pb-4">
-        <div className="flex items-center gap-2 mb-1">
-          <MapPin size={18} className="text-pilgrim-gold" weight="fill" />
-          <span className="exhibit-caption">Sacred Map</span>
-        </div>
-        <h1 className="font-serif text-2xl font-semibold text-foreground">
-          Sacred Locations
-        </h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Explore the holy sites of Masjid al-Haram
-        </p>
-      </div>
+      <PageHeader
+        title="Sacred Map"
+        arabicTitle="الخريطة"
+        subtitle="Holy sites of Masjid al-Haram"
+      />
 
       {/* Map */}
       <div className="px-4">
