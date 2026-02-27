@@ -75,7 +75,7 @@ function AudioPlayer({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: '100%' }}
       transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-      className="fixed bottom-[72px] left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white rounded-t-[28px] shadow-[0_-8px_40px_rgba(0,0,0,0.15)] z-40 px-5 pt-5 pb-6"
+      className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[28px] shadow-[0_-8px_40px_rgba(0,0,0,0.15)] z-40 px-5 pt-5 pb-6"
     >
       {/* Handle */}
       <div className="flex justify-center mb-4">
@@ -171,7 +171,7 @@ export default function AudioPage() {
   const categories = Array.from(new Set(audioData.map((a) => a.category)))
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-[100dvh] bg-background flex flex-col relative overflow-hidden">
       <PageHeader
         title="Audio Guides"
         arabicTitle="المقاطع الصوتية"
@@ -179,7 +179,8 @@ export default function AudioPage() {
       />
 
       {/* Audio tracks */}
-      <div className="px-4 space-y-3 pb-6">
+      <div className="flex-1 overflow-y-auto">
+      <div className="px-4 space-y-3 pb-6 pt-2">
         {(audioData as AudioGuide[]).map((track, idx) => (
           <motion.div
             key={track.id}
@@ -236,6 +237,8 @@ export default function AudioPage() {
           </motion.div>
         ))}
       </div>
+
+      </div>{/* /scroll area */}
 
       {/* Player */}
       <AnimatePresence>

@@ -47,7 +47,7 @@ function AddReminderSheet({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: '100%' }}
       transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-      className="fixed bottom-[72px] left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white rounded-t-[28px] shadow-[0_-8px_40px_rgba(0,0,0,0.15)] z-40"
+      className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[28px] shadow-[0_-8px_40px_rgba(0,0,0,0.15)] z-40"
     >
       {/* Handle */}
       <div className="flex justify-center pt-3 mb-4">
@@ -122,7 +122,7 @@ export default function RemindersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-[100dvh] bg-background flex flex-col relative overflow-hidden">
       <PageHeader
         title="Reminders"
         arabicTitle="التذكيرات"
@@ -141,6 +141,7 @@ export default function RemindersPage() {
       />
 
       {/* Reminders list */}
+      <div className="flex-1 overflow-y-auto">
       {reminders.length === 0 ? (
         <motion.div
           initial={{ opacity: 0 }}
@@ -215,10 +216,12 @@ export default function RemindersPage() {
         </div>
       )}
 
+      </div>{/* /scroll area */}
+
       {/* Add sheet overlay */}
       {showAdd && (
         <div
-          className="fixed inset-0 bg-black/40 z-30"
+          className="absolute inset-0 bg-black/40 z-30"
           onClick={() => setShowAdd(false)}
           aria-hidden="true"
         />
