@@ -244,9 +244,9 @@ export default function HomePage() {
               {messages.map((msg) => (
                 <div key={msg.id}>
                   {msg.role === 'user' ? (
-                    /* User message — centered pill */
-                    <div className="flex justify-center">
-                      <span className="inline-block bg-gray-100 rounded-full px-4 py-2 text-[13px] font-medium text-foreground/75 text-center max-w-[90%] leading-snug">
+                    /* User message — right-aligned pill */
+                    <div className="flex justify-end">
+                      <span className="inline-block bg-gray-100 rounded-full px-4 py-2 text-[13px] font-medium text-foreground/75 max-w-[80%] leading-snug">
                         {msg.text}
                       </span>
                     </div>
