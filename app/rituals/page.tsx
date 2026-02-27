@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BookOpen, CaretRight, CheckCircle, Play, ArrowLeft } from '@phosphor-icons/react'
+import { PageHeader } from '@/components/layout/page-header'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
@@ -189,19 +190,11 @@ export default function RitualsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="px-4 pt-6 pb-4">
-        <div className="flex items-center gap-2 mb-1">
-          <BookOpen size={18} className="text-pilgrim-gold" weight="fill" />
-          <span className="exhibit-caption">Ritual Guides</span>
-        </div>
-        <h1 className="font-serif text-2xl font-semibold text-foreground">
-          Learn the Rituals
-        </h1>
-        <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-          Step-by-step guidance for Hajj and Umrah rituals with duas and tips.
-        </p>
-      </div>
+      <PageHeader
+        title="Ritual Guides"
+        arabicTitle="الشعائر"
+        subtitle="Step-by-step guidance with duas and tips"
+      />
 
       {/* Ritual list */}
       <div className="px-4 space-y-3 pb-6">

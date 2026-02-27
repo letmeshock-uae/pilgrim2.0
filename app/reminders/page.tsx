@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Bell, Plus, Trash, X, Check } from '@phosphor-icons/react'
+import { PageHeader } from '@/components/layout/page-header'
 import { usePilgrimStore } from '@/lib/store/pilgrim-store'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -122,30 +123,22 @@ export default function RemindersPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="px-4 pt-6 pb-4 flex items-start justify-between">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <Bell size={18} className="text-pilgrim-gold" weight="fill" />
-            <span className="exhibit-caption">Reminders</span>
-          </div>
-          <h1 className="font-serif text-2xl font-semibold text-foreground">
-            Your Reminders
-          </h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            Stay on schedule during your pilgrimage
-          </p>
-        </div>
-        <Button
-          onClick={() => setShowAdd(true)}
-          size="sm"
-          className="mt-1 gap-1.5"
-          aria-label="Add reminder"
-        >
-          <Plus size={15} weight="bold" />
-          Add
-        </Button>
-      </div>
+      <PageHeader
+        title="Reminders"
+        arabicTitle="التذكيرات"
+        subtitle="Stay on schedule during your pilgrimage"
+        rightSlot={
+          <Button
+            onClick={() => setShowAdd(true)}
+            size="sm"
+            className="gap-1.5"
+            aria-label="Add reminder"
+          >
+            <Plus size={15} weight="bold" />
+            Add
+          </Button>
+        }
+      />
 
       {/* Reminders list */}
       {reminders.length === 0 ? (
