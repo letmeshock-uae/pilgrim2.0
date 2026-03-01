@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useRef, useCallback, useEffect } from 'react'
-import dynamic from 'next/dynamic'
 import { motion, AnimatePresence } from 'framer-motion'
 import { List, Waveform, PaperPlaneTilt, Sparkle } from '@phosphor-icons/react'
 import { BurgerMenu } from '@/components/layout/burger-menu'
@@ -18,41 +17,6 @@ const RATIO_DEFAULT = 0.68  // scene fraction of available space
 const RATIO_CHAT = 0.36     // scene fraction when conversation is active
 const RATIO_MIN = 0.16
 const RATIO_MAX = 0.86
-
-// ─── Quick actions ─────────────────────────────────────────────────────────────
-const QUICK_ACTIONS = [
-  {
-    id: 'journey',
-    label: 'Start journey',
-    desc: 'to a holy place',
-    message: 'Tell me about starting the Hajj pilgrimage journey to Mecca',
-  },
-  {
-    id: 'explore',
-    label: 'Look around',
-    desc: 'on your own',
-    message: null,
-  },
-  {
-    id: 'ask',
-    label: 'Ask anything',
-    desc: 'or find out why',
-    message: null,
-  },
-]
-
-// ─── Dynamic 3D scene ─────────────────────────────────────────────────────────
-const KaabaScene = dynamic(
-  () => import('@/components/scene/kaaba-scene').then((m) => m.KaabaScene),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-full bg-[#1C1C1E] flex items-center justify-center">
-        <div className="w-8 h-8 rounded-full border-2 border-white/20 border-t-white/70 animate-spin" />
-      </div>
-    ),
-  }
-)
 
 // ─── Typing indicator ─────────────────────────────────────────────────────────
 function TypingDots() {
@@ -143,17 +107,6 @@ export default function HomePage() {
     }
   }
 
-  // ── Quick action ───────────────────────────────────────────────────────────
-  const handleQuickAction = (action: (typeof QUICK_ACTIONS)[number]) => {
-    if (action.message) {
-      sendMessage(action.message)
-    } else if (action.id === 'ask') {
-      inputRef.current?.focus()
-    } else {
-      console.log('explore mode')
-    }
-  }
-
   // CSS-driven height with smooth transition (avoids Framer Motion calc issues)
   // Pool = 100dvh - inputBar - handle - top/bottom padding (PAD * 2)
   const sceneStyle: React.CSSProperties = {
@@ -165,61 +118,49 @@ export default function HomePage() {
   return (
     <div className="h-[100dvh] flex flex-col overflow-hidden relative bg-[#F5F4F0] px-3 pt-3 pb-3">
 
-      {/* ── 3D Scene ───────────────────────────────────────────────────────── */}
+      {/* ── Scene: gradient splash ─────────────────────────────────────────── */}
       <div
-        className="relative flex-none bg-[#1C1C1E] rounded-[24px] overflow-hidden"
-        style={sceneStyle}
+        className="relative flex-none rounded-[24px] overflow-hidden"
+        style={{
+          ...sceneStyle,
+          background: 'radial-gradient(ellipse at 50% 45%, #13374F 0%, #0C0B19 100%)',
+        }}
       >
-        <KaabaScene onLocationSelect={() => {}} />
-
-        {/* Top-left: title */}
-        <div className="absolute top-4 left-4 z-10 pointer-events-none">
-          <p className="font-serif text-white text-[17px] font-semibold drop-shadow">
-            Pilgrim
-          </p>
-          <p className="text-white/45 text-[10px] font-sans mt-0.5">
-            Masjid al-Haram · Mecca
-          </p>
+        {/* Top-left: datum logo */}
+        <div className="absolute top-5 left-5 z-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/datum.svg" alt="Datum" className="h-6 w-auto" />
         </div>
 
-        {/* Top-right: burger button */}
-        <button
-          onClick={() => setMenuOpen(true)}
-          className="absolute top-4 right-4 w-11 h-11 bg-white rounded-[16px] flex items-center justify-center z-10 active:scale-95 transition-transform"
-          style={{ boxShadow: '0 2px 14px rgba(0,0,0,0.28)' }}
-          aria-label="Open navigation menu"
-          aria-expanded={menuOpen}
-        >
-          <List size={18} weight="bold" className="text-foreground" />
-        </button>
+        {/* Top-right: Al Ain Museum logo + menu */}
+        <div className="absolute top-5 right-5 z-10 flex items-start gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/alainmuseum.svg" alt="Al Ain Museum" className="h-8 w-auto" />
+          <button
+            onClick={() => setMenuOpen(true)}
+            className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center active:scale-95 transition-transform mt-0.5"
+            aria-label="Open navigation menu"
+            aria-expanded={menuOpen}
+          >
+            <List size={14} weight="bold" className="text-white/80" />
+          </button>
+        </div>
 
-        {/* Bottom: quick action cards (disappear once chat starts) */}
-        <AnimatePresence>
-          {!hasMessages && (
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="absolute bottom-4 left-4 right-4 flex gap-2"
-            >
-              {QUICK_ACTIONS.map((action) => (
-                <button
-                  key={action.id}
-                  onClick={() => handleQuickAction(action)}
-                  className="flex-1 bg-white/90 backdrop-blur-md rounded-[18px] p-3 text-left transition-all active:scale-[0.96] active:bg-white/75"
-                >
-                  <p className="text-[12px] font-semibold text-foreground leading-tight">
-                    {action.label}
-                  </p>
-                  <p className="text-[10px] text-muted-foreground mt-0.5 leading-tight">
-                    {action.desc}
-                  </p>
-                </button>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Center: Ramadan text */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 pointer-events-none select-none">
+          <p
+            className="font-serif text-white leading-none tracking-wide"
+            style={{ fontSize: 'clamp(28px, 8vw, 38px)', textShadow: '0 2px 24px rgba(19,55,79,0.8)' }}
+          >
+            Ramadan Kareem
+          </p>
+          <p
+            className="font-serif text-white/45 leading-none tracking-[0.25em] uppercase"
+            style={{ fontSize: 'clamp(10px, 3vw, 14px)' }}
+          >
+            Ramadan
+          </p>
+        </div>
       </div>
 
       {/* ── Drag handle ────────────────────────────────────────────────────── */}
